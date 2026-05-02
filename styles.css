@@ -1,0 +1,520 @@
+:root {
+  --bg: #08110f;
+  --panel: #101b18;
+  --panel-2: #14221f;
+  --text: #e8f0ec;
+  --muted: #95a69f;
+  --line: rgba(232, 240, 236, 0.12);
+  --accent: #59d39a;
+  --accent-2: #e4bd62;
+  --ink: #07100e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top right, rgba(89, 211, 154, 0.16), transparent 28rem),
+    linear-gradient(120deg, #08110f 0%, #0a1513 48%, #111915 100%);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.outline {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 10;
+  width: 15.5rem;
+  padding: 2rem 1.25rem;
+  border-right: 1px solid var(--line);
+  background: rgba(8, 17, 15, 0.76);
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 2.4rem;
+  place-items: center;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-weight: 800;
+}
+
+details {
+  margin-bottom: 1rem;
+}
+
+summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::before {
+  content: "+";
+  display: inline-block;
+  width: 1.1rem;
+  color: var(--accent-2);
+}
+
+details[open] summary::before {
+  content: "-";
+}
+
+.outline nav a {
+  display: block;
+  margin: 0.55rem 0 0.55rem 1.1rem;
+  border-left: 1px solid transparent;
+  color: #b7c5bf;
+  font-size: 0.92rem;
+  transition: color 160ms ease, border-color 160ms ease, padding 160ms ease;
+}
+
+.outline nav a.active,
+.outline nav a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  padding-left: 0.55rem;
+}
+
+main {
+  margin-left: 15.5rem;
+}
+
+.section {
+  min-height: 100vh;
+  padding: 7rem clamp(2rem, 6vw, 6rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.compact {
+  min-height: auto;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.65fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.eyebrow,
+.section-kicker {
+  margin: 0 0 1rem;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 12ch;
+  margin-bottom: 1.3rem;
+  font-size: clamp(3.7rem, 8vw, 8.7rem);
+  line-height: 0.92;
+}
+
+h2 {
+  max-width: 15ch;
+  font-size: clamp(2rem, 4vw, 4.4rem);
+  line-height: 1;
+}
+
+h3 {
+  margin-bottom: 0.6rem;
+  font-size: 1.08rem;
+  line-height: 1.25;
+}
+
+.lede {
+  max-width: 43rem;
+  color: #bfd0c8;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+}
+
+.hero-actions,
+.socials,
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.button,
+.socials a,
+.filter {
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button.primary,
+.filter.active,
+.button:hover,
+.socials a:hover,
+.filter:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.portrait {
+  position: relative;
+  margin: 0;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.portrait::after {
+  content: "";
+  position: absolute;
+  inset: auto 1rem 1rem auto;
+  width: 42%;
+  height: 0.45rem;
+  background: var(--accent-2);
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(18rem, 1fr);
+  gap: clamp(2rem, 7vw, 6rem);
+}
+
+.prose {
+  max-width: 44rem;
+  color: #bdccc6;
+  font-size: 1.08rem;
+}
+
+.metrics,
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.metrics {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 4rem;
+}
+
+.metrics div,
+.panel,
+.video-panel,
+.portfolio-card,
+.news-card,
+.event-list a,
+.event-list div {
+  border: 1px solid var(--line);
+  background: rgba(16, 27, 24, 0.72);
+}
+
+.metrics div {
+  padding: 1.2rem;
+}
+
+.metrics strong {
+  display: block;
+  color: var(--accent-2);
+  font-size: 1.65rem;
+  line-height: 1.1;
+}
+
+.metrics span,
+article span,
+.event-list span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.timeline {
+  max-width: 56rem;
+}
+
+.timeline article {
+  position: relative;
+  padding: 0 0 3rem 2rem;
+  border-left: 1px solid var(--line);
+}
+
+.timeline article::before {
+  content: "";
+  position: absolute;
+  top: 0.35rem;
+  left: -0.35rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: var(--accent);
+}
+
+.timeline p,
+.timeline li {
+  color: #bdccc6;
+}
+
+.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.panel {
+  padding: 1.4rem;
+}
+
+.section-top {
+  display: flex;
+  gap: 2rem;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.portfolio-groups {
+  display: grid;
+  gap: 1rem;
+}
+
+.portfolio-group {
+  border: 1px solid var(--line);
+  background: rgba(8, 17, 15, 0.54);
+}
+
+.portfolio-group summary {
+  padding: 1.1rem;
+  color: var(--text);
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.portfolio-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+.portfolio-card {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.portfolio-card img,
+.news-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--panel-2);
+}
+
+.portfolio-card div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.portfolio-card p {
+  color: #b9c8c2;
+  font-size: 0.95rem;
+}
+
+.portfolio-card small {
+  margin-top: auto;
+  color: var(--accent-2);
+  font-weight: 800;
+}
+
+.video-panel {
+  overflow: hidden;
+}
+
+iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+.video-panel h3,
+.video-panel p {
+  padding-inline: 1rem;
+}
+
+.video-panel h3 {
+  padding-top: 1rem;
+}
+
+.video-panel p {
+  color: var(--muted);
+}
+
+.news-card {
+  overflow: hidden;
+}
+
+.news-card span,
+.news-card h3 {
+  display: block;
+  padding-inline: 1rem;
+}
+
+.news-card span {
+  padding-top: 1rem;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.event-list {
+  display: grid;
+  gap: 0.8rem;
+  max-width: 58rem;
+}
+
+.event-list a,
+.event-list div {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.45fr) 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.skills span {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--line);
+  background: rgba(228, 189, 98, 0.08);
+  color: #e5d3a7;
+  font-size: 0.92rem;
+}
+
+.contact h2 {
+  max-width: 18ch;
+}
+
+.email {
+  display: inline-block;
+  margin: 1rem 0 2rem;
+  color: var(--accent);
+  font-size: clamp(1.4rem, 3vw, 3rem);
+  font-weight: 800;
+}
+
+@media (max-width: 980px) {
+  .outline {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    overflow-x: auto;
+  }
+
+  .brand {
+    display: none;
+  }
+
+  .outline nav,
+  .outline details[open] {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .outline details {
+    margin: 0;
+  }
+
+  .outline nav a {
+    display: inline-block;
+    margin: 0.35rem 0.4rem 0 0;
+  }
+
+  main {
+    margin-left: 0;
+  }
+
+  .section {
+    min-height: auto;
+    padding: 5rem 1.25rem;
+  }
+
+  .hero,
+  .split,
+  .section-top,
+  .event-list a,
+  .event-list div {
+    display: block;
+  }
+
+  .portrait {
+    margin-top: 2rem;
+    max-width: 28rem;
+  }
+
+  .metrics,
+  .portfolio-list,
+  .three,
+  .two {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: clamp(3.2rem, 15vw, 5.5rem);
+  }
+}
