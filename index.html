@@ -17,10 +17,17 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <aside class="outline" aria-label="Page outline">
+    <header class="mobile-header">
+      <a class="mobile-brand" href="#home">FK</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="outline">Menu</button>
+      <span class="active-section-label">Home</span>
+    </header>
+
+    <aside class="outline" id="outline" aria-label="Page outline">
       <a class="brand" href="#home" aria-label="Felix Kiprono home">
         <span>FK</span>
       </a>
+      <p class="outline-role">Data Journalist</p>
       <nav>
         <details open>
           <summary>Profile</summary>
@@ -32,11 +39,11 @@
         <details open>
           <summary>Work</summary>
           <a href="#portfolio">Portfolio</a>
-          <a href="#videos">Video</a>
-          <a href="#news">News</a>
+          <a href="#videos">Videos</a>
+          <a href="#news">In the News</a>
           <a href="#events">Events</a>
         </details>
-        <details>
+        <details open>
           <summary>Connect</summary>
           <a href="#qualifications">Qualifications</a>
           <a href="#contact">Contact</a>
@@ -45,17 +52,17 @@
     </aside>
 
     <main>
-      <section id="home" class="hero section">
+      <section id="home" class="hero section" data-label="Home">
         <div class="hero-copy">
-          <p class="eyebrow">Data journalist and media lead based in Nairobi</p>
+          <p class="eyebrow">Data Journalist</p>
           <h1>I turn public data into stories people can use.</h1>
           <p class="lede">
             I build evidence-led stories, databases, explainers, and videos across public finance,
             health, climate, gender, economics, and civic accountability.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="assets/Felix_Kiprono_Resume.pdf" download>Download resume</a>
-            <a class="button" href="mailto:felixkiprono.ke@gmail.com">Email me</a>
+            <a class="button primary" href="#portfolio">View my work</a>
+            <a class="button" href="#contact">Contact me</a>
           </div>
         </div>
         <figure class="portrait">
@@ -63,33 +70,33 @@
         </figure>
       </section>
 
-      <section id="about" class="section">
+      <section id="about" class="section" data-label="About">
         <p class="section-kicker">About</p>
         <div class="split">
-          <h2>Curious about patterns, careful with evidence, driven by public access.</h2>
+          <h2>Curiosity, public evidence, and simple explanation guide the work.</h2>
           <div class="prose">
             <p>
               I love looking at data, spotting trends, and making meaningful connections. My work
-              is about turning those connections into useful public knowledge, then using that
-              knowledge to support innovation and solve real problems.
+              turns those connections into useful public knowledge, using clear language and visual
+              storytelling so more people can understand the world around them.
             </p>
             <p>
-              My long-term aim is to help collect publicly available datasets and make them easier
-              for anyone to use, so more people can understand the world around them. I began in
-              finance and accounting, a path that opened the door to data, systems, controls, and
-              the discipline of asking better questions.
+              I started in finance and accounting, where systems, controls, and numbers shaped how I
+              think. Moving into journalism was also a decision to pursue my passion: finding what is
+              hidden in plain sight and explaining it in ways that can inspire innovation and better
+              decisions.
+            </p>
+            <p>
+              I believe readily available tools can produce remarkable public-interest work when used
+              with care. My journey into journalism and the skills I have built reflect that belief:
+              collect what is public, make it accessible, and help people see what the evidence is
+              saying.
             </p>
           </div>
         </div>
-        <div class="metrics">
-          <div><strong>6+ years</strong><span>Data storytelling</span></div>
-          <div><strong>500+ cases</strong><span>Kenya femicide database, 2016-2023 launch scope</span></div>
-          <div><strong>33 countries</strong><span>Electricity pricing analysis across Africa</span></div>
-          <div><strong>$131.6B</strong><span>USAID Africa funding analyzed, 2001-2024</span></div>
-        </div>
       </section>
 
-      <section id="experience" class="section">
+      <section id="experience" class="section" data-label="Experience">
         <p class="section-kicker">Experience</p>
         <div class="timeline">
           <article>
@@ -139,7 +146,7 @@
         </div>
       </section>
 
-      <section id="education" class="section compact">
+      <section id="education" class="section compact" data-label="Education">
         <p class="section-kicker">Education</p>
         <div class="grid two">
           <article class="panel">
@@ -155,82 +162,76 @@
         </div>
       </section>
 
-      <section id="portfolio" class="section">
+      <section id="portfolio" class="section" data-label="Portfolio">
         <div class="section-top">
           <div>
             <p class="section-kicker">Portfolio</p>
-            <h2>Selected work across data stories, databases, explainers, and investigations.</h2>
-          </div>
-          <div class="filters" aria-label="Portfolio filters">
-            <button class="filter active" data-filter="all">All</button>
-            <button class="filter" data-filter="article">Articles</button>
-            <button class="filter" data-filter="database">Databases</button>
-            <button class="filter" data-filter="video">Video</button>
-            <button class="filter" data-filter="training">Training</button>
+            <h2>Featured work, published stories, databases, videos, and trainings.</h2>
           </div>
         </div>
-        <div id="portfolio-groups" class="portfolio-groups"></div>
-      </section>
 
-      <section id="videos" class="section">
-        <p class="section-kicker">Video</p>
-        <div class="grid two video-grid">
-          <article class="video-panel">
-            <iframe
-              src="https://www.youtube.com/embed/yB8c9eB2N8g"
-              title="Felix Kiprono video producer showreel"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-            <h3>Video producer showreel</h3>
-            <p>A compact reel of production, scripting, presenting, and visual storytelling work.</p>
-          </article>
-          <article class="video-panel">
-            <iframe
-              src="https://www.youtube.com/embed/b85AfkhLg-8"
-              title="Why are Kenyan students burning schools?"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-            <h3>Why are Kenyan students burning schools?</h3>
-            <p>Debunk Media video companion to a data story on school unrest in Kenya.</p>
-          </article>
+        <div class="portfolio-layout">
+          <aside class="portfolio-filters" aria-label="Portfolio filters">
+            <div class="filter-group">
+              <p>Type</p>
+              <div id="type-filters" class="filter-stack"></div>
+            </div>
+            <div class="filter-group">
+              <p>Topic</p>
+              <div id="topic-filters" class="filter-stack"></div>
+            </div>
+            <div class="filter-group">
+              <p>Date</p>
+              <div id="year-filters" class="filter-stack"></div>
+            </div>
+          </aside>
+
+          <div class="portfolio-results">
+            <div class="portfolio-count" id="portfolio-count"></div>
+            <div id="featured-work" class="featured-work"></div>
+            <details class="portfolio-group" open>
+              <summary>Full portfolio</summary>
+              <div id="standard-work" class="portfolio-list"></div>
+            </details>
+            <details class="portfolio-group low-priority">
+              <summary>Additional archive</summary>
+              <div id="archive-work" class="portfolio-list small"></div>
+            </details>
+          </div>
         </div>
       </section>
 
-      <section id="news" class="section compact">
-        <p class="section-kicker">In the news</p>
-        <div class="grid three">
-          <a class="news-card" href="https://www.bbc.com/news/world-africa-68178445" target="_blank" rel="noreferrer">
-            <img src="https://ichef.bbci.co.uk/news/1024/branded_news/3EF3/production/_132551161_902fb94d13d63145f38f719ac849bda55684f73f0_0_6720_44801000x667.jpg" alt="" />
-            <span>BBC</span>
-            <h3>Expert source in international coverage of Kenya's femicide crisis.</h3>
-          </a>
-          <a class="news-card" href="https://gijn.org/stories/africa-focus-data-journalism/" target="_blank" rel="noreferrer">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="" />
-            <span>GIJN</span>
-            <h3>Featured for data journalism methods and the Silencing Women database.</h3>
-          </a>
-          <a class="news-card" href="https://www.africadatahub.org/blog/an-insiders-look-at-the-femicide-database-project" target="_blank" rel="noreferrer">
-            <img src="https://cdn.prod.website-files.com/609a29dfdde412503cff3e96/65ae27e01d266d9792150286_65ab49db5648e593287bdee3_femicide_collage.jpg" alt="" />
-            <span>Africa Data Hub</span>
-            <h3>Interviewed on the methodology behind Kenya's first femicide database.</h3>
-          </a>
+      <section id="videos" class="section" data-label="Videos">
+        <p class="section-kicker">Videos</p>
+        <div class="showreel">
+          <iframe
+            src="https://www.youtube.com/embed/yB8c9eB2N8g"
+            title="Felix Kiprono video producer showreel"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+          <div>
+            <span>Showreel</span>
+            <h2>Video producer showreel</h2>
+            <p>
+              A compact reel of production, scripting, presenting, and visual storytelling work.
+            </p>
+          </div>
         </div>
+        <div id="video-work" class="video-strip"></div>
       </section>
 
-      <section id="events" class="section">
+      <section id="news" class="section compact" data-label="In the News">
+        <p class="section-kicker">In the News</p>
+        <div id="news-work" class="grid three"></div>
+      </section>
+
+      <section id="events" class="section" data-label="Events">
         <p class="section-kicker">Events and trainings</p>
-        <div class="event-list">
-          <a href="https://youtu.be/FoppRnunVtM?t=823" target="_blank" rel="noreferrer"><strong>GLF / CIFOR-ICRAF Media Lab</strong><span>Trainer and presenter on data in environmental storytelling.</span></a>
-          <a href="https://www.linkedin.com/posts/code-for-africa_join-this-insightful-session-on-the-critical-activity-7188194934783361024-wkLK" target="_blank" rel="noreferrer"><strong>Code for Africa data storytelling session</strong><span>Trainer on data sourcing, analysis, and narrative construction for journalists.</span></a>
-          <a href="https://aijc.africa/" target="_blank" rel="noreferrer"><strong>Africa Investigative Journalism Conference</strong><span>Speaker and session lead on data investigations.</span></a>
-          <a href="https://gijc2025.org/" target="_blank" rel="noreferrer"><strong>Global Investigative Journalism Conference 2025</strong><span>Listed as a professional milestone from the supplied brief.</span></a>
-          <div><strong>DW Fellowship</strong><span>Professional development milestone from the supplied brief.</span></div>
-        </div>
+        <div id="event-work" class="event-grid"></div>
       </section>
 
-      <section id="qualifications" class="section compact">
+      <section id="qualifications" class="section compact" data-label="Qualifications">
         <p class="section-kicker">Tools and qualifications</p>
         <div class="skills">
           <span>CPA-K</span>
@@ -259,10 +260,14 @@
         </div>
       </section>
 
-      <section id="contact" class="section contact">
+      <section id="contact" class="section contact" data-label="Contact">
         <p class="section-kicker">Contact</p>
         <h2>For data stories, investigations, training, partnerships, and editorial projects.</h2>
         <a class="email" href="mailto:felixkiprono.ke@gmail.com">felixkiprono.ke@gmail.com</a>
+        <div class="contact-actions">
+          <a class="button primary" href="assets/Felix_Kiprono_Resume.pdf" download>Download resume</a>
+          <a class="button" href="mailto:felixkiprono.ke@gmail.com">Email Felix</a>
+        </div>
         <div class="socials">
           <a href="https://www.instagram.com/kipronoexplores?igsh=MTZrNmllOXYzd2s2YQ==" target="_blank" rel="noreferrer">Instagram</a>
           <a href="https://www.tiktok.com/@felixkiprono.ke?_r=1&_t=ZS-960QqsIFACS" target="_blank" rel="noreferrer">TikTok</a>
@@ -272,6 +277,7 @@
       </section>
     </main>
 
+    <script src="site-data.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
