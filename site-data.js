@@ -1,4 +1,223 @@
 window.PORTFOLIO_DATA = {
+  "site": {
+    "profile": {
+      "hero_label": "Data Journalist",
+      "hero_title": "I turn public data into stories people can use.",
+      "hero_subtitle": "I build evidence-led stories, databases, explainers, and videos across public finance, health, climate, gender, economics, and civic accountability.",
+      "about_title": "Curiosity, public evidence, and simple explanation guide the work.",
+      "about_paragraph_1": "I love looking at data, spotting trends, and making meaningful connections. My work turns those connections into useful public knowledge, using clear language and visual storytelling so more people can understand the world around them.",
+      "about_paragraph_2": "I started in finance and accounting, where systems, controls, and numbers shaped how I think. Moving into journalism was also a decision to pursue my passion: finding what is hidden in plain sight and explaining it in ways that can inspire innovation and better decisions.",
+      "about_paragraph_3": "I believe readily available tools can produce remarkable public-interest work when used with care. My journey into journalism and the skills I have built reflect that belief: collect what is public, make it accessible, and help people see what the evidence is saying.",
+      "contact_intro": "For data stories, investigations, training, partnerships, and editorial projects.",
+      "email": "felixkiprono.ke@gmail.com"
+    },
+    "experience": [
+      {
+        "period": "Apr 2023 - Present",
+        "title": "Data journalist and editor",
+        "organization": "Odipo Dev / Africa Data Hub",
+        "summary": "Leads data storytelling work and content editing across a consortium of four organizations, producing public-interest stories and helping build an Africa-wide data repository. Key work includes the Silencing Women femicide database and award-winning reporting on the effect of US funding withdrawals on Kenya's health system.",
+        "bullets": "Sources, extracts, cleans, analyzes, and quality-checks public data from the World Bank, OECD, UN, IMF, national statistics bureaus, and other repositories.|Turns complex datasets into articles, explainers, reports, videos, and visual stories for non-technical audiences.|Maintains editorial and data quality standards across Africa Data Hub and Odipo Dev projects."
+      },
+      {
+        "period": "Jun 2021 - Oct 2022",
+        "title": "Multimedia journalist",
+        "organization": "Debunk Media",
+        "summary": "Reported and produced financial and economic stories on public debt, inflation, and civic issues, packaging them into accessible multimedia explainers and evergreen social content.",
+        "bullets": "Researched public-interest topics, gathered data, mined insights, and wrote video scripts.|Produced articles, videos, graphics, animations, and social media content aligned with Debunk Media editorial standards."
+      },
+      {
+        "period": "Jul 2019 - Sep 2021",
+        "title": "Cash and bank accountant",
+        "organization": "MultiChoice Africa",
+        "summary": "Prepared payment statistics, processed transaction matching, completed monthly bank reconciliations, and strengthened financial controls to reduce revenue leakage.",
+        "bullets": ""
+      },
+      {
+        "period": "Jul 2013 - Jun 2019",
+        "title": "Treasury accountant",
+        "organization": "MultiChoice Africa",
+        "summary": "Performed bank reconciliations in line with accounting standards and prepared monthly cash analysis reports for management.",
+        "bullets": ""
+      }
+    ],
+    "education": [
+      {
+        "period": "Sep 2009 - Apr 2013",
+        "title": "Bachelor's degree in Supply Chain Management",
+        "institution": "Jomo Kenyatta University of Agriculture and Technology",
+        "details": ""
+      },
+      {
+        "period": "Jul 2008 - Jun 2012",
+        "title": "Certified Public Accountant (CPA-K)",
+        "institution": "Kenya College of Accountancy and self-study",
+        "details": ""
+      }
+    ],
+    "skills": [
+      {
+        "skill": "CPA-K",
+        "details": ""
+      },
+      {
+        "skill": "Data analysis",
+        "details": ""
+      },
+      {
+        "skill": "Data visualization",
+        "details": ""
+      },
+      {
+        "skill": "Content writing",
+        "details": ""
+      },
+      {
+        "skill": "Editing",
+        "details": ""
+      },
+      {
+        "skill": "Publishing",
+        "details": ""
+      },
+      {
+        "skill": "Web scraping",
+        "details": ""
+      },
+      {
+        "skill": "Document extraction",
+        "details": ""
+      },
+      {
+        "skill": "Remote teamwork",
+        "details": ""
+      },
+      {
+        "skill": "Time management",
+        "details": ""
+      },
+      {
+        "skill": "MS Excel",
+        "details": ""
+      },
+      {
+        "skill": "Google Sheets",
+        "details": ""
+      },
+      {
+        "skill": "OpenRefine",
+        "details": ""
+      },
+      {
+        "skill": "Google Data Studio",
+        "details": ""
+      },
+      {
+        "skill": "Datawrapper",
+        "details": ""
+      },
+      {
+        "skill": "Flourish",
+        "details": ""
+      },
+      {
+        "skill": "SQL Server",
+        "details": ""
+      },
+      {
+        "skill": "Python",
+        "details": ""
+      },
+      {
+        "skill": "Google Pinpoint",
+        "details": ""
+      },
+      {
+        "skill": "Claude",
+        "details": ""
+      },
+      {
+        "skill": "LLMs",
+        "details": ""
+      },
+      {
+        "skill": "MS Office",
+        "details": ""
+      },
+      {
+        "skill": "Google Suite",
+        "details": ""
+      }
+    ],
+    "partners": [
+      {
+        "name": "Odipo Dev",
+        "url": "https://www.odipodev.com/",
+        "logo_path": "assets/partners/odipo-dev.png",
+        "category": "Organization"
+      },
+      {
+        "name": "AIJC",
+        "url": "https://aijc.africa/",
+        "logo_path": "assets/partners/aijc.png",
+        "category": "Conference"
+      },
+      {
+        "name": "GIJN",
+        "url": "https://gijn.org/",
+        "logo_path": "assets/partners/gijn.png",
+        "category": "Network"
+      },
+      {
+        "name": "Debunk Media",
+        "url": "https://debunk.media/",
+        "logo_path": "assets/partners/debunk-media.png",
+        "category": "Media"
+      },
+      {
+        "name": "Baraza Media Lab",
+        "url": "https://barazalab.com/",
+        "logo_path": "assets/partners/baraza-media-lab.png",
+        "category": "Media lab"
+      },
+      {
+        "name": "Africa Uncensored",
+        "url": "https://africauncensored.online/",
+        "logo_path": "assets/partners/africa-uncensored.png",
+        "category": "Media"
+      },
+      {
+        "name": "Nation Media Group",
+        "url": "https://nation.africa/",
+        "logo_path": "assets/partners/nation-media-group.png",
+        "category": "Media"
+      },
+      {
+        "name": "DW Akademie",
+        "url": "https://www.dw.com/en/dw-akademie/s-12130",
+        "logo_path": "assets/partners/dw-akademie.png",
+        "category": "Training"
+      }
+    ],
+    "socials": [
+      {
+        "platform": "Instagram",
+        "url": "https://www.instagram.com/kipronoexplores?igsh=MTZrNmllOXYzd2s2YQ=="
+      },
+      {
+        "platform": "TikTok",
+        "url": "https://www.tiktok.com/@felixkiprono.ke?_r=1&_t=ZS-960QqsIFACS"
+      },
+      {
+        "platform": "X",
+        "url": "https://x.com/felixkiprono_ke"
+      },
+      {
+        "platform": "YouTube",
+        "url": "https://www.youtube.com/@kipronoexplores1981"
+      }
+    ]
+  },
   "items": [
     {
       "type": "article",

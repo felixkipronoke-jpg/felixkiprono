@@ -118,6 +118,26 @@ details[open] summary::before {
   transition: color 160ms ease, border-color 160ms ease, padding 160ms ease;
 }
 
+.outline nav a.nav-parent {
+  color: var(--text);
+  font-weight: 800;
+}
+
+.outline nav a.nav-child {
+  margin-left: 2.1rem;
+  font-size: 0.84rem;
+}
+
+.outline nav a.nav-child::before {
+  content: "";
+  display: inline-block;
+  width: 0.7rem;
+  height: 1px;
+  margin-right: 0.45rem;
+  vertical-align: middle;
+  background: var(--line);
+}
+
 .outline nav a.active,
 .outline nav a:hover {
   border-color: var(--accent);
@@ -340,6 +360,23 @@ h3 {
   background: rgba(8, 17, 15, 0.74);
 }
 
+.filter-group {
+  margin: 0;
+}
+
+.filter-group summary {
+  padding: 0;
+  color: var(--accent-2);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.filter-group summary::before {
+  width: 0.9rem;
+}
+
 .filter-group p {
   margin-bottom: 0.45rem;
   color: var(--accent-2);
@@ -352,15 +389,17 @@ h3 {
 .filter-stack {
   display: grid;
   gap: 0.45rem;
+  padding-top: 0.55rem;
 }
 
 .filter {
   display: flex;
-  min-height: 2.35rem;
+  min-height: 2rem;
   align-items: center;
   justify-content: space-between;
-  padding: 0.55rem 0.7rem;
+  padding: 0.42rem 0.58rem;
   text-align: left;
+  font-size: 0.82rem;
 }
 
 .filter b {
@@ -379,8 +418,8 @@ h3 {
 
 .featured-work {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
   margin-bottom: 1rem;
 }
 
@@ -421,7 +460,7 @@ h3 {
 }
 
 .portfolio-card.featured {
-  min-height: 31rem;
+  min-height: 0;
 }
 
 .portfolio-card img,
@@ -435,7 +474,7 @@ h3 {
 }
 
 .portfolio-card.featured img {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 8.5;
 }
 
 .portfolio-card-body {
@@ -443,6 +482,26 @@ h3 {
   flex: 1;
   flex-direction: column;
   padding: 1rem;
+}
+
+.portfolio-card.featured .portfolio-card-body {
+  padding: 0.85rem;
+}
+
+.portfolio-card.featured h3 {
+  font-size: 0.98rem;
+}
+
+.portfolio-card.featured p {
+  font-size: 0.86rem;
+}
+
+.portfolio-card.featured dl {
+  display: none;
+}
+
+.portfolio-card.featured .story {
+  display: none;
 }
 
 .portfolio-card p,
@@ -624,18 +683,70 @@ iframe {
   color: var(--accent-2);
 }
 
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.partner-card {
+  display: grid;
+  min-height: 10rem;
+  align-content: center;
+  justify-items: center;
+  gap: 0.7rem;
+  padding: 1.2rem;
+  border: 1px solid var(--line);
+  background: rgba(16, 27, 24, 0.72);
+  text-align: center;
+}
+
+.partner-card img {
+  width: 5.25rem;
+  height: 5.25rem;
+  object-fit: contain;
+  padding: 0.6rem;
+  border: 1px solid var(--line);
+  background: rgba(232, 240, 236, 0.94);
+}
+
+.partner-card span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.partner-card strong {
+  color: var(--text);
+}
+
 .skills {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.7rem;
 }
 
-.skills span {
-  padding: 0.55rem 0.8rem;
+.skill-item {
+  margin: 0;
   border: 1px solid var(--line);
   background: rgba(228, 189, 98, 0.08);
+}
+
+.skill-item summary {
+  padding: 0.8rem;
   color: #e5d3a7;
   font-size: 0.92rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.skill-item p {
+  min-height: 3rem;
+  margin: 0;
+  padding: 0 0.8rem 0.8rem 1.7rem;
+  color: var(--muted);
 }
 
 .contact h2 {
@@ -663,7 +774,7 @@ iframe {
   }
 
   .featured-work {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -736,6 +847,10 @@ iframe {
     margin: 0.4rem 0;
   }
 
+  .outline nav a.nav-child {
+    margin-left: 1rem;
+  }
+
   main {
     margin-left: 0;
   }
@@ -760,21 +875,23 @@ iframe {
   }
 
   .portfolio-filters {
-    position: sticky;
-    top: 3.9rem;
+    position: static;
     z-index: 9;
-    display: flex;
+    display: grid;
     max-height: none;
     margin-bottom: 1rem;
-    overflow-x: auto;
+    overflow: visible;
   }
 
   .filter-group {
-    min-width: 11rem;
+    min-width: 0;
   }
 
   .three,
   .two,
+  .featured-work,
+  .partner-grid,
+  .skills,
   .portfolio-list,
   .portfolio-list.small,
   .video-strip {

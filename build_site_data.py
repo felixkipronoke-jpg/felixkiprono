@@ -5,7 +5,7 @@ from collections import OrderedDict
 from pathlib import Path
 from urllib.parse import urlparse
 
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font, PatternFill
 
 
@@ -14,6 +14,7 @@ PORTFOLIO_CSV = ROOT / "full_portfolio.csv"
 SOCIAL_CSV = ROOT / "social_videos.csv"
 DATA_JS = ROOT / "site-data.js"
 TEMPLATE_XLSX = ROOT / "website_content_template.xlsx"
+CONTENT_XLSX = ROOT / "website_content.xlsx"
 
 PLATFORM_PRIORITY = {"youtube": 0, "tiktok": 1, "instagram": 2}
 
@@ -30,6 +31,120 @@ TOPIC_RULES = OrderedDict(
     ]
 )
 
+PROFILE_ROWS = [
+    {"field": "hero_label", "value": "Data Journalist"},
+    {"field": "hero_title", "value": "I turn public data into stories people can use."},
+    {
+        "field": "hero_subtitle",
+        "value": "I build evidence-led stories, databases, explainers, and videos across public finance, health, climate, gender, economics, and civic accountability.",
+    },
+    {"field": "about_title", "value": "Curiosity, public evidence, and simple explanation guide the work."},
+    {
+        "field": "about_paragraph_1",
+        "value": "I love looking at data, spotting trends, and making meaningful connections. My work turns those connections into useful public knowledge, using clear language and visual storytelling so more people can understand the world around them.",
+    },
+    {
+        "field": "about_paragraph_2",
+        "value": "I started in finance and accounting, where systems, controls, and numbers shaped how I think. Moving into journalism was also a decision to pursue my passion: finding what is hidden in plain sight and explaining it in ways that can inspire innovation and better decisions.",
+    },
+    {
+        "field": "about_paragraph_3",
+        "value": "I believe readily available tools can produce remarkable public-interest work when used with care. My journey into journalism and the skills I have built reflect that belief: collect what is public, make it accessible, and help people see what the evidence is saying.",
+    },
+    {"field": "contact_intro", "value": "For data stories, investigations, training, partnerships, and editorial projects."},
+    {"field": "email", "value": "felixkiprono.ke@gmail.com"},
+]
+
+EXPERIENCE_ROWS = [
+    {
+        "period": "Apr 2023 - Present",
+        "title": "Data journalist and editor",
+        "organization": "Odipo Dev / Africa Data Hub",
+        "summary": "Leads data storytelling work and content editing across a consortium of four organizations, producing public-interest stories and helping build an Africa-wide data repository. Key work includes the Silencing Women femicide database and award-winning reporting on the effect of US funding withdrawals on Kenya's health system.",
+        "bullets": "Sources, extracts, cleans, analyzes, and quality-checks public data from the World Bank, OECD, UN, IMF, national statistics bureaus, and other repositories.|Turns complex datasets into articles, explainers, reports, videos, and visual stories for non-technical audiences.|Maintains editorial and data quality standards across Africa Data Hub and Odipo Dev projects.",
+    },
+    {
+        "period": "Jun 2021 - Oct 2022",
+        "title": "Multimedia journalist",
+        "organization": "Debunk Media",
+        "summary": "Reported and produced financial and economic stories on public debt, inflation, and civic issues, packaging them into accessible multimedia explainers and evergreen social content.",
+        "bullets": "Researched public-interest topics, gathered data, mined insights, and wrote video scripts.|Produced articles, videos, graphics, animations, and social media content aligned with Debunk Media editorial standards.",
+    },
+    {
+        "period": "Jul 2019 - Sep 2021",
+        "title": "Cash and bank accountant",
+        "organization": "MultiChoice Africa",
+        "summary": "Prepared payment statistics, processed transaction matching, completed monthly bank reconciliations, and strengthened financial controls to reduce revenue leakage.",
+        "bullets": "",
+    },
+    {
+        "period": "Jul 2013 - Jun 2019",
+        "title": "Treasury accountant",
+        "organization": "MultiChoice Africa",
+        "summary": "Performed bank reconciliations in line with accounting standards and prepared monthly cash analysis reports for management.",
+        "bullets": "",
+    },
+]
+
+EDUCATION_ROWS = [
+    {
+        "period": "Sep 2009 - Apr 2013",
+        "title": "Bachelor's degree in Supply Chain Management",
+        "institution": "Jomo Kenyatta University of Agriculture and Technology",
+        "details": "",
+    },
+    {
+        "period": "Jul 2008 - Jun 2012",
+        "title": "Certified Public Accountant (CPA-K)",
+        "institution": "Kenya College of Accountancy and self-study",
+        "details": "",
+    },
+]
+
+SKILL_ROWS = [
+    {"skill": "CPA-K", "details": ""},
+    {"skill": "Data analysis", "details": ""},
+    {"skill": "Data visualization", "details": ""},
+    {"skill": "Content writing", "details": ""},
+    {"skill": "Editing", "details": ""},
+    {"skill": "Publishing", "details": ""},
+    {"skill": "Web scraping", "details": ""},
+    {"skill": "Document extraction", "details": ""},
+    {"skill": "Remote teamwork", "details": ""},
+    {"skill": "Time management", "details": ""},
+    {"skill": "MS Excel", "details": ""},
+    {"skill": "Google Sheets", "details": ""},
+    {"skill": "OpenRefine", "details": ""},
+    {"skill": "Google Data Studio", "details": ""},
+    {"skill": "Datawrapper", "details": ""},
+    {"skill": "Flourish", "details": ""},
+    {"skill": "SQL Server", "details": ""},
+    {"skill": "Python", "details": ""},
+    {"skill": "Google Pinpoint", "details": ""},
+    {"skill": "Claude", "details": ""},
+    {"skill": "LLMs", "details": ""},
+    {"skill": "MS Office", "details": ""},
+    {"skill": "Google Suite", "details": ""},
+]
+
+PARTNER_ROWS = [
+    {"name": "Odipo Dev", "url": "https://www.odipodev.com/", "logo_path": "assets/partners/odipo-dev.png", "category": "Organization"},
+    {"name": "AIJC", "url": "https://aijc.africa/", "logo_path": "assets/partners/aijc.png", "category": "Conference"},
+    {"name": "GIJN", "url": "https://gijn.org/", "logo_path": "assets/partners/gijn.png", "category": "Network"},
+    {"name": "Debunk Media", "url": "https://debunk.media/", "logo_path": "assets/partners/debunk-media.png", "category": "Media"},
+    {"name": "Baraza Media Lab", "url": "https://barazalab.com/", "logo_path": "assets/partners/baraza-media-lab.png", "category": "Media lab"},
+    {"name": "Africa Uncensored", "url": "https://africauncensored.online/", "logo_path": "assets/partners/africa-uncensored.png", "category": "Media"},
+    {"name": "Nation Media Group", "url": "https://nation.africa/", "logo_path": "assets/partners/nation-media-group.png", "category": "Media"},
+    {"name": "DW Akademie", "url": "https://www.dw.com/en/dw-akademie/s-12130", "logo_path": "assets/partners/dw-akademie.png", "category": "Training"},
+]
+
+SOCIAL_ROWS = [
+    {"platform": "Instagram", "url": "https://www.instagram.com/kipronoexplores?igsh=MTZrNmllOXYzd2s2YQ=="},
+    {"platform": "TikTok", "url": "https://www.tiktok.com/@felixkiprono.ke?_r=1&_t=ZS-960QqsIFACS"},
+    {"platform": "X", "url": "https://x.com/felixkiprono_ke"},
+    {"platform": "YouTube", "url": "https://www.youtube.com/@kipronoexplores1981"},
+]
+
 
 def read_csv(path):
     if not path.exists():
@@ -40,6 +155,44 @@ def read_csv(path):
 
 def clean_row(row):
     return {str(k or "").strip(): str(v or "").strip() for k, v in row.items()}
+
+
+def rows_from_sheet(workbook, sheet_name, defaults):
+    if sheet_name not in workbook.sheetnames:
+        return defaults
+    sheet = workbook[sheet_name]
+    rows = list(sheet.iter_rows(values_only=True))
+    if not rows:
+        return defaults
+    headers = [str(value or "").strip() for value in rows[0]]
+    data = []
+    for row in rows[1:]:
+        entry = {headers[index]: str(value or "").strip() for index, value in enumerate(row) if index < len(headers)}
+        if any(entry.values()):
+            data.append(entry)
+    return data or defaults
+
+
+def load_site_content():
+    if CONTENT_XLSX.exists():
+        workbook = load_workbook(CONTENT_XLSX, data_only=True)
+        return {
+            "profile": {row.get("field", ""): row.get("value", "") for row in rows_from_sheet(workbook, "profile", PROFILE_ROWS)},
+            "experience": rows_from_sheet(workbook, "experience", EXPERIENCE_ROWS),
+            "education": rows_from_sheet(workbook, "education", EDUCATION_ROWS),
+            "skills": rows_from_sheet(workbook, "skills", SKILL_ROWS),
+            "partners": rows_from_sheet(workbook, "partners", PARTNER_ROWS),
+            "socials": rows_from_sheet(workbook, "socials", SOCIAL_ROWS),
+        }
+
+    return {
+        "profile": {row["field"]: row["value"] for row in PROFILE_ROWS},
+        "experience": EXPERIENCE_ROWS,
+        "education": EDUCATION_ROWS,
+        "skills": SKILL_ROWS,
+        "partners": PARTNER_ROWS,
+        "socials": SOCIAL_ROWS,
+    }
 
 
 def normalize_platform(value):
@@ -192,8 +345,9 @@ def load_items():
     return sorted(items, key=sort_key)
 
 
-def write_data(items):
+def write_data(items, site_content):
     payload = {
+        "site": site_content,
         "items": items,
         "filters": {
             "types": sorted({item["type"] for item in items}),
@@ -208,7 +362,27 @@ def write_data(items):
 
 
 def write_template():
-    headers = [
+    workbook = Workbook()
+    workbook.remove(workbook.active)
+
+    def add_sheet_to(target_workbook, name, headers, rows, widths=None):
+        sheet = target_workbook.create_sheet(name)
+        sheet.append(headers)
+        for row in rows:
+            sheet.append([row.get(header, "") for header in headers])
+        for cell in sheet[1]:
+            cell.font = Font(bold=True, color="FFFFFF")
+            cell.fill = PatternFill("solid", fgColor="111915")
+        sheet.freeze_panes = "A2"
+        for index, header in enumerate(headers, start=1):
+            letter = sheet.cell(row=1, column=index).column_letter
+            sheet.column_dimensions[letter].width = (widths or {}).get(header, max(14, min(60, len(header) + 10)))
+        return sheet
+
+    def add_sheet(name, headers, rows, widths=None):
+        return add_sheet_to(workbook, name, headers, rows, widths)
+
+    portfolio_headers = [
         "content_type",
         "platform",
         "account",
@@ -225,39 +399,43 @@ def write_template():
         "topic",
         "notes",
     ]
-    wb = Workbook()
-    ws = wb.active
-    ws.title = "portfolio_content"
-    ws.append(headers)
-    for cell in ws[1]:
-        cell.font = Font(bold=True, color="FFFFFF")
-        cell.fill = PatternFill("solid", fgColor="111915")
-    widths = {
-        "A": 16,
-        "B": 22,
-        "C": 20,
-        "D": 46,
-        "E": 16,
-        "F": 60,
-        "G": 54,
-        "H": 54,
-        "I": 26,
-        "J": 26,
-        "K": 26,
-        "L": 18,
-        "M": 70,
-        "N": 22,
-        "O": 36,
-    }
-    for column, width in widths.items():
-        ws.column_dimensions[column].width = width
-    ws.freeze_panes = "A2"
-    wb.save(TEMPLATE_XLSX)
+
+    portfolio_rows = read_csv(PORTFOLIO_CSV)
+    add_sheet("profile", ["field", "value"], PROFILE_ROWS, {"field": 24, "value": 90})
+    add_sheet("experience", ["period", "title", "organization", "summary", "bullets"], EXPERIENCE_ROWS, {"period": 18, "title": 32, "organization": 32, "summary": 90, "bullets": 90})
+    add_sheet("education", ["period", "title", "institution", "details"], EDUCATION_ROWS, {"period": 18, "title": 42, "institution": 48, "details": 60})
+    add_sheet("skills", ["skill", "details"], SKILL_ROWS, {"skill": 28, "details": 80})
+    add_sheet("partners", ["name", "url", "logo_path", "category"], PARTNER_ROWS, {"name": 30, "url": 52, "logo_path": 42, "category": 20})
+    add_sheet("socials", ["platform", "url"], SOCIAL_ROWS, {"platform": 22, "url": 70})
+    add_sheet("portfolio_content", portfolio_headers, portfolio_rows, {"title": 48, "summary": 70, "url": 58, "thumbnail_url": 58, "behind_the_story": 78, "notes": 38})
+    add_sheet("social_videos", ["platform", "account", "title", "date", "summary", "video_url", "thumbnail_url", "source_id"], read_csv(SOCIAL_CSV), {"title": 55, "summary": 70, "video_url": 58, "thumbnail_url": 58})
+
+    workbook.save(TEMPLATE_XLSX)
+    if not CONTENT_XLSX.exists():
+        workbook.save(CONTENT_XLSX)
+    else:
+        content_workbook = load_workbook(CONTENT_XLSX)
+        existing = set(content_workbook.sheetnames)
+        sheet_specs = [
+            ("profile", ["field", "value"], PROFILE_ROWS, {"field": 24, "value": 90}),
+            ("experience", ["period", "title", "organization", "summary", "bullets"], EXPERIENCE_ROWS, {"period": 18, "title": 32, "organization": 32, "summary": 90, "bullets": 90}),
+            ("education", ["period", "title", "institution", "details"], EDUCATION_ROWS, {"period": 18, "title": 42, "institution": 48, "details": 60}),
+            ("skills", ["skill", "details"], SKILL_ROWS, {"skill": 28, "details": 80}),
+            ("partners", ["name", "url", "logo_path", "category"], PARTNER_ROWS, {"name": 30, "url": 52, "logo_path": 42, "category": 20}),
+            ("socials", ["platform", "url"], SOCIAL_ROWS, {"platform": 22, "url": 70}),
+            ("portfolio_content", portfolio_headers, portfolio_rows, {"title": 48, "summary": 70, "url": 58, "thumbnail_url": 58, "behind_the_story": 78, "notes": 38}),
+            ("social_videos", ["platform", "account", "title", "date", "summary", "video_url", "thumbnail_url", "source_id"], read_csv(SOCIAL_CSV), {"title": 55, "summary": 70, "video_url": 58, "thumbnail_url": 58}),
+        ]
+        for name, headers, rows, widths in sheet_specs:
+            if name not in existing:
+                add_sheet_to(content_workbook, name, headers, rows, widths)
+        content_workbook.save(CONTENT_XLSX)
 
 
 if __name__ == "__main__":
     items = load_items()
-    write_data(items)
+    site_content = load_site_content()
+    write_data(items, site_content)
     write_template()
     print(f"Wrote {len(items)} unique items to {DATA_JS.name}")
     print(f"Wrote template to {TEMPLATE_XLSX.name}")

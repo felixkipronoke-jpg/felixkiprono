@@ -1,5 +1,7 @@
 const portfolioData = window.PORTFOLIO_DATA || { items: [], filters: { types: [], topics: [], years: [] } };
 const allItems = portfolioData.items || [];
+const site = portfolioData.site || {};
+const profile = site.profile || {};
 
 const state = {
   type: "all",
@@ -33,6 +35,92 @@ function escapeHtml(value) {
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
+}
+
+function renderSiteContent() {
+  document.querySelectorAll("[data-field]").forEach((node) => {
+    const value = profile[node.dataset.field];
+    if (!value) return;
+    node.textContent = value;
+    if (node.tagName === "A" && node.dataset.field === "email") {
+      node.href = `mailto:${value}`;
+    }
+  });
+
+  const about = document.getElementById("about-copy");
+  if (about) {
+    about.innerHTML = ["about_paragraph_1", "about_paragraph_2", "about_paragraph_3"]
+      .map((key) => profile[key])
+      .filter(Boolean)
+      .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+      .join("");
+  }
+
+  const experience = document.getElementById("experience-list");
+  if (experience) {
+    experience.innerHTML = (site.experience || [])
+      .map((item) => {
+        const bullets = String(item.bullets || "")
+          .split("|")
+          .map((bullet) => bullet.trim())
+          .filter(Boolean)
+          .map((bullet) => `<li>${escapeHtml(bullet)}</li>`)
+          .join("");
+        return `<article>
+          <span>${escapeHtml(item.period)}</span>
+          <h3>${escapeHtml(item.title)}${item.organization ? `, ${escapeHtml(item.organization)}` : ""}</h3>
+          <p>${escapeHtml(item.summary)}</p>
+          ${bullets ? `<ul>${bullets}</ul>` : ""}
+        </article>`;
+      })
+      .join("");
+  }
+
+  const education = document.getElementById("education-list");
+  if (education) {
+    education.innerHTML = (site.education || [])
+      .map(
+        (item) => `<article class="panel">
+          <span>${escapeHtml(item.period)}</span>
+          <h3>${escapeHtml(item.title)}</h3>
+          <p>${escapeHtml(item.institution)}</p>
+          ${item.details ? `<p>${escapeHtml(item.details)}</p>` : ""}
+        </article>`
+      )
+      .join("");
+  }
+
+  const skills = document.getElementById("skills-list");
+  if (skills) {
+    skills.innerHTML = (site.skills || [])
+      .map(
+        (item) => `<details class="skill-item">
+          <summary>${escapeHtml(item.skill)}</summary>
+          <p>${escapeHtml(item.details || "")}</p>
+        </details>`
+      )
+      .join("");
+  }
+
+  const partners = document.getElementById("partner-work");
+  if (partners) {
+    partners.innerHTML = (site.partners || [])
+      .map(
+        (item) => `<a class="partner-card" href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">
+          <img src="${escapeHtml(item.logo_path)}" alt="${escapeHtml(item.name)} logo" loading="lazy">
+          <span>${escapeHtml(item.category)}</span>
+          <strong>${escapeHtml(item.name)}</strong>
+        </a>`
+      )
+      .join("");
+  }
+
+  const socials = document.getElementById("social-links");
+  if (socials) {
+    socials.innerHTML = (site.socials || [])
+      .map((item) => `<a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${escapeHtml(item.platform)}</a>`)
+      .join("");
+  }
 }
 
 function itemMatches(item) {
@@ -179,6 +267,9 @@ function bindFilters() {
       renderFilterGroup("year-filters", "year", portfolioData.filters.years || []);
       bindFilters();
       renderPortfolio();
+      if (window.matchMedia("(max-width: 980px)").matches) {
+        button.closest("details")?.removeAttribute("open");
+      }
     });
   });
 }
@@ -190,6 +281,7 @@ function initFilters() {
   bindFilters();
 }
 
+renderSiteContent();
 initFilters();
 renderPortfolio();
 renderVideos();
