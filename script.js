@@ -25,6 +25,21 @@ const labels = {
   migration: "Migration",
 };
 
+const typeFilterOrder = ["article", "video", "database"];
+const sectionPaths = {
+  home: "Profile > Home",
+  about: "Profile > About",
+  experience: "Profile > Experience",
+  portfolio: "Work > Portfolio",
+  videos: "Work > Videos",
+  events: "Work > Events and Trainings",
+  partnerships: "Work > Partnerships",
+  news: "Work > In the News",
+  skills: "Connect > Skills",
+  education: "Connect > Education",
+  contact: "Connect > Contact",
+};
+
 function titleCase(value) {
   return labels[value] || String(value || "").replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
@@ -130,6 +145,15 @@ function itemMatches(item) {
   return typeMatch && topicMatch && yearMatch;
 }
 
+function activeFilterText() {
+  const parts = [
+    `Type: ${state.type === "all" ? "All" : titleCase(state.type)}`,
+    `Topic: ${state.topic === "all" ? "All" : titleCase(state.topic)}`,
+    `Date: ${state.year === "all" ? "All" : state.year}`,
+  ];
+  return parts.join(" / ");
+}
+
 function renderFilterGroup(targetId, key, values) {
   const target = document.getElementById(targetId);
   if (!target) return;
@@ -193,7 +217,7 @@ function renderPortfolio() {
   const standard = matched.filter((item) => item.priority !== "top priority" && item.type !== "media").slice(0, 24);
   const archive = matched.filter((item) => item.priority !== "top priority" && item.type !== "media").slice(24);
 
-  document.getElementById("portfolio-count").textContent = `${matched.length} matching items`;
+  document.getElementById("portfolio-count").textContent = `${matched.length} matching items / ${activeFilterText()}`;
   document.getElementById("featured-work").innerHTML = featured
     .map((item) => `<article class="portfolio-card featured">${cardTemplate(item, true)}</article>`)
     .join("");
@@ -262,7 +286,7 @@ function bindFilters() {
   document.querySelectorAll(".filter").forEach((button) => {
     button.addEventListener("click", () => {
       state[button.dataset.key] = button.dataset.value;
-      renderFilterGroup("type-filters", "type", portfolioData.filters.types || []);
+      renderFilterGroup("type-filters", "type", typeFilterOrder);
       renderFilterGroup("topic-filters", "topic", portfolioData.filters.topics || []);
       renderFilterGroup("year-filters", "year", portfolioData.filters.years || []);
       bindFilters();
@@ -275,7 +299,7 @@ function bindFilters() {
 }
 
 function initFilters() {
-  renderFilterGroup("type-filters", "type", portfolioData.filters.types || []);
+  renderFilterGroup("type-filters", "type", typeFilterOrder);
   renderFilterGroup("topic-filters", "topic", portfolioData.filters.topics || []);
   renderFilterGroup("year-filters", "year", portfolioData.filters.years || []);
   bindFilters();
@@ -313,18 +337,35 @@ const observer = new IntersectionObserver(
 
     if (!visible) return;
 
-    const id = visible.target.id;
-    const label = visible.target.dataset.label || id;
-    if (activeLabel) activeLabel.textContent = label;
-
-    outlineLinks.forEach((link) => {
-      link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
-    });
+    updateActiveSectionFromScroll();
   },
   { threshold: [0.22, 0.45, 0.7] }
 );
 
 document.querySelectorAll("main section").forEach((section) => observer.observe(section));
+
+function setActiveSection(id) {
+  if (activeLabel) activeLabel.textContent = sectionPaths[id] || document.getElementById(id)?.dataset.label || id;
+  outlineLinks.forEach((link) => {
+    link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+  });
+}
+
+function updateActiveSectionFromScroll() {
+  const sections = [...document.querySelectorAll("main section")];
+  const offset = window.matchMedia("(max-width: 980px)").matches ? 96 : 120;
+  const current =
+    sections
+      .map((section) => ({ section, top: section.getBoundingClientRect().top }))
+      .filter((item) => item.top <= offset)
+      .sort((a, b) => b.top - a.top)[0]?.section || sections[0];
+
+  if (current) setActiveSection(current.id);
+}
+
+window.addEventListener("scroll", updateActiveSectionFromScroll, { passive: true });
+window.addEventListener("resize", updateActiveSectionFromScroll);
+updateActiveSectionFromScroll();
 
 document.addEventListener("click", (event) => {
   if (!window.matchMedia("(max-width: 980px)").matches) return;
