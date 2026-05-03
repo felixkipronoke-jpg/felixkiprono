@@ -358,7 +358,7 @@ function setActiveSection(id) {
     activeLabel.innerHTML = path
       .map((part, index) => {
         const targetId = index === 0 ? sectionGroups[part] || id : id;
-        return `<a href="#${targetId}">${escapeHtml(part)}</a>`;
+        return `<button type="button" data-target="${targetId}">${escapeHtml(part)}</button>`;
       })
       .join("<span>/</span>");
   }
@@ -382,6 +382,14 @@ function updateActiveSectionFromScroll() {
 window.addEventListener("scroll", updateActiveSectionFromScroll, { passive: true });
 window.addEventListener("resize", updateActiveSectionFromScroll);
 updateActiveSectionFromScroll();
+
+activeLabel?.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-target]");
+  if (!button) return;
+  const target = document.getElementById(button.dataset.target);
+  if (!target) return;
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
+});
 
 document.addEventListener("click", (event) => {
   if (!window.matchMedia("(max-width: 980px)").matches) return;
