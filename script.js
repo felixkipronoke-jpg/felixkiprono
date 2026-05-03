@@ -27,17 +27,23 @@ const labels = {
 
 const typeFilterOrder = ["article", "video", "database"];
 const sectionPaths = {
-  home: "Profile > Home",
-  about: "Profile > About",
-  experience: "Profile > Experience",
-  portfolio: "Work > Portfolio",
-  videos: "Work > Videos",
-  events: "Work > Events and Trainings",
-  partnerships: "Work > Partnerships",
-  news: "Work > In the News",
-  skills: "Connect > Skills",
-  education: "Connect > Education",
-  contact: "Connect > Contact",
+  home: ["Profile", "Home"],
+  about: ["Profile", "About"],
+  experience: ["Profile", "Experience"],
+  portfolio: ["Work", "Portfolio"],
+  videos: ["Work", "Videos"],
+  events: ["Work", "Events and Trainings"],
+  partnerships: ["Work", "Partnerships"],
+  news: ["Work", "In the News"],
+  skills: ["Connect", "Skills"],
+  education: ["Connect", "Education"],
+  contact: ["Connect", "Contact"],
+};
+
+const sectionGroups = {
+  Profile: "home",
+  Work: "portfolio",
+  Connect: "skills",
 };
 
 function titleCase(value) {
@@ -193,7 +199,10 @@ function cardTemplate(item, featured = false) {
 
   return `
     <a class="card-link" href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer" aria-label="${escapeHtml(item.title)}"></a>
-    <img src="${escapeHtml(item.thumbnail)}" alt="" loading="lazy">
+    <div class="thumb-wrap">
+      <img src="${escapeHtml(item.thumbnail)}" alt="" loading="lazy">
+      ${featured ? '<span class="priority-pill">Featured</span>' : ""}
+    </div>
     <div class="portfolio-card-body">
       <div class="card-meta">${escapeHtml(meta)}</div>
       <h3>${escapeHtml(item.title)}</h3>
@@ -206,7 +215,6 @@ function cardTemplate(item, featured = false) {
       <div class="topic-tags">${topics}</div>
       ${story}
       <a class="read-link" href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">View story</a>
-      ${featured ? '<span class="priority-pill">Featured</span>' : ""}
     </div>
   `;
 }
@@ -345,7 +353,15 @@ const observer = new IntersectionObserver(
 document.querySelectorAll("main section").forEach((section) => observer.observe(section));
 
 function setActiveSection(id) {
-  if (activeLabel) activeLabel.textContent = sectionPaths[id] || document.getElementById(id)?.dataset.label || id;
+  if (activeLabel) {
+    const path = sectionPaths[id] || [document.getElementById(id)?.dataset.label || id];
+    activeLabel.innerHTML = path
+      .map((part, index) => {
+        const targetId = index === 0 ? sectionGroups[part] || id : id;
+        return `<a href="#${targetId}">${escapeHtml(part)}</a>`;
+      })
+      .join("<span>/</span>");
+  }
   outlineLinks.forEach((link) => {
     link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
   });
