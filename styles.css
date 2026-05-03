@@ -111,21 +111,16 @@ details[open] summary::before {
 
 .outline nav a {
   display: block;
-  margin: 0.55rem 0 0.55rem 1.1rem;
+  margin: 0.55rem 0 0.55rem 1.4rem;
   border-left: 1px solid transparent;
   color: #b7c5bf;
   font-size: 0.92rem;
   transition: color 160ms ease, border-color 160ms ease, padding 160ms ease;
 }
 
-.outline nav a.nav-parent {
-  color: var(--text);
-  font-weight: 800;
-}
-
 .outline nav a.nav-child {
-  margin-left: 2.1rem;
-  font-size: 0.84rem;
+  margin-left: 1.4rem;
+  font-size: 0.88rem;
 }
 
 .outline nav a.nav-child::before {
@@ -445,7 +440,8 @@ h3 {
 }
 
 .portfolio-list.small {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.65rem;
 }
 
 .portfolio-card {
@@ -502,6 +498,44 @@ h3 {
 
 .portfolio-card.featured .story {
   display: none;
+}
+
+.compact-card img {
+  aspect-ratio: 16 / 7;
+}
+
+.compact-card .portfolio-card-body {
+  padding: 0.65rem;
+}
+
+.compact-card .card-meta {
+  font-size: 0.72rem;
+}
+
+.compact-card h3 {
+  margin-bottom: 0.35rem;
+  font-size: 0.82rem;
+}
+
+.compact-card p {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 0.76rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.compact-card dl,
+.compact-card .topic-tags,
+.compact-card .story {
+  display: none;
+}
+
+.compact-card .read-link {
+  margin-top: 0.25rem;
+  padding: 0;
+  border: 0;
+  font-size: 0.7rem;
 }
 
 .portfolio-card p,
@@ -768,9 +802,12 @@ iframe {
 
 @media (max-width: 1180px) {
   .portfolio-list,
-  .portfolio-list.small,
   .video-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-list.small {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .featured-work {
@@ -848,7 +885,7 @@ iframe {
   }
 
   .outline nav a.nav-child {
-    margin-left: 1rem;
+    margin-left: 0.9rem;
   }
 
   main {
@@ -893,9 +930,12 @@ iframe {
   .partner-grid,
   .skills,
   .portfolio-list,
-  .portfolio-list.small,
   .video-strip {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-list.small {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   h1 {

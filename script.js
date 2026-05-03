@@ -181,7 +181,7 @@ function cardTemplate(item, featured = false) {
       </dl>
       <div class="topic-tags">${topics}</div>
       ${story}
-      <a class="read-link" href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">Open source</a>
+      <a class="read-link" href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">View story</a>
       ${featured ? '<span class="priority-pill">Featured</span>' : ""}
     </div>
   `;
@@ -325,3 +325,11 @@ const observer = new IntersectionObserver(
 );
 
 document.querySelectorAll("main section").forEach((section) => observer.observe(section));
+
+document.addEventListener("click", (event) => {
+  if (!window.matchMedia("(max-width: 980px)").matches) return;
+  if (event.target.closest(".portfolio-filters")) return;
+  document.querySelectorAll(".portfolio-filters details[open]").forEach((details) => {
+    details.removeAttribute("open");
+  });
+});

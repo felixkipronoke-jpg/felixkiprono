@@ -31,23 +31,23 @@
       <nav>
         <details open>
           <summary>Profile</summary>
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#experience">Experience</a>
-          <a href="#education">Education</a>
+          <a class="nav-child" href="#home">Home</a>
+          <a class="nav-child" href="#about">About</a>
+          <a class="nav-child" href="#experience">Experience</a>
         </details>
         <details open>
           <summary>Work</summary>
-          <a class="nav-parent" href="#portfolio">Portfolio</a>
+          <a class="nav-child" href="#portfolio">Portfolio</a>
           <a class="nav-child" href="#videos">Videos</a>
-          <a class="nav-child" href="#news">In the News</a>
-          <a class="nav-child" href="#events">Events</a>
+          <a class="nav-child" href="#events">Events and Trainings</a>
           <a class="nav-child" href="#partnerships">Partnerships</a>
+          <a class="nav-child" href="#news">In the News</a>
         </details>
         <details open>
           <summary>Connect</summary>
-          <a href="#qualifications">Qualifications</a>
-          <a href="#contact">Contact</a>
+          <a class="nav-child" href="#skills">Skills</a>
+          <a class="nav-child" href="#education">Education</a>
+          <a class="nav-child" href="#contact">Contact</a>
         </details>
       </nav>
     </aside>
@@ -79,11 +79,6 @@
       <section id="experience" class="section" data-label="Experience">
         <p class="section-kicker">Experience</p>
         <div class="timeline" id="experience-list"></div>
-      </section>
-
-      <section id="education" class="section compact" data-label="Education">
-        <p class="section-kicker">Education</p>
-        <div class="grid two" id="education-list"></div>
       </section>
 
       <section id="portfolio" class="section" data-label="Portfolio">
@@ -145,11 +140,6 @@
         <div id="video-work" class="video-strip"></div>
       </section>
 
-      <section id="news" class="section compact" data-label="In the News">
-        <p class="section-kicker">In the News</p>
-        <div id="news-work" class="grid three"></div>
-      </section>
-
       <section id="events" class="section" data-label="Events">
         <p class="section-kicker">Events and trainings</p>
         <div id="event-work" class="event-grid"></div>
@@ -160,9 +150,19 @@
         <div id="partner-work" class="partner-grid"></div>
       </section>
 
-      <section id="qualifications" class="section compact" data-label="Qualifications">
-        <p class="section-kicker">Skills and qualifications</p>
+      <section id="news" class="section compact" data-label="In the News">
+        <p class="section-kicker">In the News</p>
+        <div id="news-work" class="grid three"></div>
+      </section>
+
+      <section id="skills" class="section compact" data-label="Skills">
+        <p class="section-kicker">Skills</p>
         <div class="skills" id="skills-list"></div>
+      </section>
+
+      <section id="education" class="section compact" data-label="Education">
+        <p class="section-kicker">Education</p>
+        <div class="grid two" id="education-list"></div>
       </section>
 
       <section id="contact" class="section contact" data-label="Contact">
